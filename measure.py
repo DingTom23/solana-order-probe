@@ -24,7 +24,7 @@ from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
 from rpc import RpcClient, RpcError
-from select import select_validators
+from validators import select_validators
 from solana_tx import build_memo_tx, build_transfer, encode_tx, load_keypair, verify_tx
 
 SLOT_MS = 400

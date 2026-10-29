@@ -13,7 +13,7 @@ from collections import Counter
 from typing import List
 
 from rpc import RpcClient
-from select import leader_windows, select_validators
+from validators import leader_windows, select_validators
 from solana_tx import build_transfer, load_keypair, random_keypair, verify_tx
 
 DEFAULT_RPC = "https://api.mainnet-beta.solana.com"
