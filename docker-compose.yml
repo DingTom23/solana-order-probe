@@ -1,0 +1,10 @@
+services:
+  probe:
+    build: .
+    volumes:
+      - ./wallet:/app/wallet:ro
+      - ./data:/app/data
+    environment:
+      SOLANA_RPC: ${SOLANA_RPC:-https://api.mainnet-beta.solana.com}
+      PAYER_KEYPAIR: ${PAYER_KEYPAIR:-wallet/solana.json}
+      RPC_PROXY: ${RPC_PROXY:-}
