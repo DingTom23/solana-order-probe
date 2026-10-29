@@ -12,6 +12,7 @@ import statistics
 from collections import Counter
 from typing import List
 
+from blockparse import parse_transactions
 from rpc import RpcClient
 from validators import leader_windows, select_validators
 from solana_tx import build_transfer, load_keypair, random_keypair, verify_tx
@@ -20,48 +21,7 @@ DEFAULT_RPC = "https://api.mainnet-beta.solana.com"
 
 
 def parse_block(block: dict) -> dict:
-    rows = []
-    for index, item in enumerate(block.get("transactions", [])):
-        tx = item.get("transaction", {})
-        meta = item.get("meta") or {}
-        message = tx.get("message", {})
-        keys = message.get("accountKeys", [])
-        payer = keys[0]["pubkey"] if keys and isinstance(keys[0], dict) else None
-        instructions = message.get("instructions", [])
-        priority = None
-        transfers = []
-        vote = False
-        for ix in instructions:
-            program = ix.get("program")
-            parsed = ix.get("parsed") or {}
-            if program == "vote":
-                vote = True
-            if program == "compute-budget" and isinstance(parsed, dict):
-                if parsed.get("type") == "setComputeUnitPrice":
-                    priority = int(parsed.get("info", {}).get("microLamports", 0))
-            if program == "system" and isinstance(parsed, dict):
-                if parsed.get("type") == "transfer":
-                    info = parsed.get("info", {})
-                    transfers.append(
-                        {
-                            "source": info.get("source"),
-                            "destination": info.get("destination"),
-                            "lamports": info.get("lamports"),
-                        }
-                    )
-        rows.append(
-            {
-                "index": index,
-                "signature": (tx.get("signatures") or [None])[0],
-                "payer": payer,
-                "fee": meta.get("fee"),
-                "cu": meta.get("computeUnitsConsumed"),
-                "priority_micro_lamports": priority,
-                "vote": vote,
-                "transfers": transfers,
-                "err": meta.get("err"),
-            }
-        )
+    rows = parse_transactions(block)
     return {
         "slot": block.get("parentSlot", 0) + 1,
         "blockhash": block.get("blockhash"),
@@ -70,7 +30,6 @@ def parse_block(block: dict) -> dict:
         "tx_count": len(rows),
         "rows": rows,
     }
-
 
 def summarize(parsed: dict) -> dict:
     rows = parsed["rows"]

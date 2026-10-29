@@ -1,0 +1,95 @@
+{
+ "slot_at_start": 462912788,
+ "blocks": [
+  {
+   "tx_count": 1034,
+   "vote_count": 0,
+   "non_vote_with_priority": 437,
+   "tau_pos_fee": -0.34331387418844456,
+   "fee_priority_score": 0.34331387418844456,
+   "fee_desc_exact": false,
+   "top_fees": [
+    [
+     510,
+     58
+    ],
+    [
+     1000000,
+     41
+    ],
+    [
+     2400000,
+     28
+    ]
+   ],
+   "median_fee": 12908,
+   "version_counts": {
+    "legacy": 174,
+    "1": 425,
+    "0": 435
+   },
+   "slot": 462912668,
+   "leader": "GEM1N1UE3C8BB8EaaEPrcFvT3iLMVrurknjW5AYjUReR"
+  },
+  {
+   "tx_count": 540,
+   "vote_count": 0,
+   "non_vote_with_priority": 203,
+   "tau_pos_fee": 0.059868988980856144,
+   "fee_priority_score": -0.059868988980856144,
+   "fee_desc_exact": false,
+   "top_fees": [
+    [
+     0,
+     33
+    ],
+    [
+     400,
+     12
+    ],
+    [
+     300,
+     10
+    ]
+   ],
+   "median_fee": 7611,
+   "version_counts": {
+    "1": 274,
+    "legacy": 109,
+    "0": 157
+   },
+   "slot": 462912665,
+   "leader": "5pPRHniefFjkiaArbGX3Y8NUysJmQ9tMZg3FrFGwHzSm"
+  },
+  {
+   "tx_count": 440,
+   "vote_count": 0,
+   "non_vote_with_priority": 223,
+   "tau_pos_fee": -0.19035618279569894,
+   "fee_priority_score": 0.19035618279569894,
+   "fee_desc_exact": false,
+   "top_fees": [
+    [
+     1000000,
+     28
+    ],
+    [
+     0,
+     26
+    ],
+    [
+     400,
+     11
+    ]
+   ],
+   "median_fee": 12908,
+   "version_counts": {
+    "legacy": 115,
+    "0": 139,
+    "1": 186
+   },
+   "slot": 462912662,
+   "leader": "5EhGYUyQNrxgUbuYF4vbL2SZDT6RMfhq3yjeyevvULeC"
+  }
+ ]
+}
